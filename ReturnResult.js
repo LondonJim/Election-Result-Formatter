@@ -1,13 +1,12 @@
 class ReturnResult {
-  constructor(fs = require('fs'), es = require('event-stream')) {
+  constructor(fs = require('fs'), es = require('event-stream'), textFile = 'results.txt') {
     this.fs = fs
     this.es = es
-
-    this.readResults()
+    this.textFile = textFile
   }
 
   readResults() {
-    let s = this.fs.createReadStream('./results.txt')
+    this.fs.createReadStream(this.textFile)
         .pipe(this.es.split())
         .pipe(this.es.mapSync(function(line) {
             //pause the readstream
@@ -29,4 +28,4 @@ class ReturnResult {
   }
 }
 
-returnResults = new ReturnResult()
+module.exports = ReturnResult
