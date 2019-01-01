@@ -3,28 +3,29 @@ class ReturnResult {
     this.fs = fs
     this.es = es
     this.textFile = textFile
+    this.results = []
   }
 
   readResults() {
-    this.fs.createReadStream(this.textFile)
+    let s = this.fs.createReadStream(this.textFile)
         .pipe(this.es.split())
-        .pipe(this.es.mapSync(function(line) {
-            //pause the readstream
-            s.pause();
-            this.formatLine(line);
-            s.resume();
-        }.bind(this))
-        .on('error', function(err) {
-            console.log('Error:', err);
+        .pipe(this.es.mapSync((line) => {
+            s.pause()
+            this.formatLine(line)
+            s.resume()
         })
-        .on('end', function() {
-            console.log('Complete.');
+        .on('error', (err) => {
+          console.log('Error:', err)
+        })
+        .on('end', () => {
+          return this.results
+          console.log('Complete.')
         })
     );
   }
 
   formatLine(line) {
-    console.log(line)
+    this.results.push(line)
   }
 }
 
