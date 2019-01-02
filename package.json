@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "event-stream": "^4.0.1",
+    "event-stream": "4.0.1",
     "mocha": "^5.2.0"
   }
 }
