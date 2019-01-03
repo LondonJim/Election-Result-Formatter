@@ -3,7 +3,7 @@ const ReturnResult = require('../ReturnResult')
 
 describe('ReturnResult', () => {
   it('should instantiate with three objects', () => {
-    const returnResult = new ReturnResult("fs", "es", "textFile")
+    const returnResult = new ReturnResult('textFile', 'fs', 'es')
     assert.equal(returnResult.fs, "fs")
     assert.equal(returnResult.es, "es")
     assert.equal(returnResult.textFile, "textFile")
@@ -11,17 +11,29 @@ describe('ReturnResult', () => {
 
   describe('#readResults', () => {
 
-    const returnResult = new ReturnResult()
+    const returnResult = new ReturnResult('./test/mockResults.txt')
 
     before(() => {
       returnResult.readResults()
     })
 
     it('should return line by line results of text file', () => {
-      assert.deepEqual(returnResult.results, ['Cardiff West, 11014, C, 17803, L, 4923, UKIP, 2069, LD',
-                                           'Islington South & Finsbury, 22547, L, 9389, C, 4829, LD, 3375, UKIP, 3371, G, 309, Ind',
-                                           'Norbury, 6789, L, 4563, C, 204, G, 596, LD',
-                                           ''])
+      assert.deepEqual(returnResult.results, [[ 'Cardiff West', 'Conservative Party', '11014',
+                                                                'Labour Party', '17803',
+                                                                'UKIP', '4923',
+                                                                'Liberal Democrats', '2069' ],
+                                              [ 'Islington South & Finsbury', 'Labour Party', '22547',
+                                                                'Conservative Party', '9389',
+                                                                'Liberal Democrats', '4829',
+                                                                'UKIP', '3375',
+                                                                'Green Party', '3371',
+                                                                'Independent','309' ],
+                                              [ 'Norbury', 'Labour Party', '6789',
+                                                                'Conservative Party', '4563',
+                                                                'Green Party', '204',
+                                                                'Liberal Democrats', '596' ],
+                                              ['']
+                                              ])
     })
   })
 })

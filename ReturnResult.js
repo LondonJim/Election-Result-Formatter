@@ -1,9 +1,16 @@
 class ReturnResult {
-  constructor(fs = require('fs'), es = require('event-stream'), textFile = 'results.txt') {
+  constructor(textFile = 'results.txt', fs = require('fs'), es = require('event-stream')) {
+    this.textFile = textFile
     this.fs = fs
     this.es = es
-    this.textFile = textFile
     this.results = []
+    this.parties = { 'C': "Conservative Party",
+                     "L": "Labour Party",
+                     "LD": "Liberal Democrats",
+                     "G": "Green Party",
+                     "UKIP": "UKIP",
+                     "Ind": "Independent",
+                     "SNP": "SNP"}
   }
 
   readResults() {
@@ -18,14 +25,27 @@ class ReturnResult {
           console.log('Error:', err)
         })
         .on('end', () => {
-          return this.results
           console.log('Complete.')
         })
     );
   }
 
   formatLine(line) {
-    this.results.push(line)
+    let lineResult = line.split(", ")
+    let formatResult = []
+    lineResult.forEach((el, index) => {
+      if (index === 0) {
+        formatResult.push(el)
+      } else if (index % 2 === 1) {
+          formatResult.push(this.partyFormat(lineResult[index + 1]))
+          formatResult.push(el)
+      }
+    })
+    this.results.push(formatResult)
+  }
+
+  partyFormat(partySymbol) {
+    return this.parties[partySymbol]
   }
 }
 
