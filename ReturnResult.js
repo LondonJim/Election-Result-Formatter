@@ -36,7 +36,7 @@ class ReturnResult {
     let partyResults = {}
     lineResult.forEach((el, index) => {
       if (lineResult[0] === '') { return } // Empty line in text file not added
-      index % 2 === 1 ? partyResults[this.partyFormat(lineResult[index + 1])] = el : null
+      index % 2 === 1 ? partyResults[this.partyFormat(lineResult[index + 1])] = parseInt(el, 10) : null
       this.results[lineResult[0]] = partyResults
     })
   }
