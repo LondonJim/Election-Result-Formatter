@@ -3,7 +3,7 @@ class ReturnResult {
     this.textFile = textFile
     this.fs = fs
     this.es = es
-    this.results = []
+    this.results = {}
     this.parties = { 'C': "Conservative Party",
                      "L": "Labour Party",
                      "LD": "Liberal Democrats",
@@ -25,6 +25,7 @@ class ReturnResult {
           console.log('Error:', err)
         })
         .on('end', () => {
+          this.results = JSON.stringify(this.results)
           console.log('Complete.')
         })
     );
@@ -32,16 +33,12 @@ class ReturnResult {
 
   formatLine(line) {
     let lineResult = line.split(", ")
-    let formatResult = []
+    let partyResults = {}
     lineResult.forEach((el, index) => {
-      if (index === 0) {
-        formatResult.push(el)
-      } else if (index % 2 === 1) {
-          formatResult.push(this.partyFormat(lineResult[index + 1]))
-          formatResult.push(el)
-      }
+      if (lineResult[0] === '') { return } // Empty line in text file not added
+      index % 2 === 1 ? partyResults[this.partyFormat(lineResult[index + 1])] = el : null
+      this.results[lineResult[0]] = partyResults
     })
-    this.results.push(formatResult)
   }
 
   partyFormat(partySymbol) {

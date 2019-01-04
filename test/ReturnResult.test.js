@@ -17,23 +17,18 @@ describe('ReturnResult', () => {
       returnResult.readResults()
     })
 
-    it('should return line by line results of text file', () => {
-      assert.deepEqual(returnResult.results, [[ 'Cardiff West', 'Conservative Party', '11014',
-                                                                'Labour Party', '17803',
-                                                                'UKIP', '4923',
-                                                                'Liberal Democrats', '2069' ],
-                                              [ 'Islington South & Finsbury', 'Labour Party', '22547',
-                                                                'Conservative Party', '9389',
-                                                                'Liberal Democrats', '4829',
-                                                                'UKIP', '3375',
-                                                                'Green Party', '3371',
-                                                                'Independent','309' ],
-                                              [ 'Norbury', 'Labour Party', '6789',
-                                                                'Conservative Party', '4563',
-                                                                'Green Party', '204',
-                                                                'Liberal Democrats', '596' ],
-                                              ['']
-                                              ])
+    it('should return line by line results of text file in JSON format', () => {
+      assert.equal(returnResult.results, JSON.stringify({'Cardiff West': {'Conservative Party': '11014',
+                                                                          'Labour Party': '17803',
+                                                                          'UKIP': '4923',
+                                                                          'Liberal Democrats': '2069'},
+                                                         'Islington South & Finsbury': {'Labour Party': '22547',
+                                                                                        'Conservative Party': '9389',
+                                                                                        'Liberal Democrats': '4829',
+                                                                                        'UKIP': '3375',
+                                                                                        'Green Party': '3371',
+                                                                                        'Independent': '309'},
+                                          }))
     })
   })
 })
