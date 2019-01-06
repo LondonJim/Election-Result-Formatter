@@ -10,7 +10,7 @@ Execute the node repl:
 
 `node`
 
-Enter the following to read the results text file:
+Enter the following to read the results text file and display all results (currently console.log):
 
 `.load returnresult.js`
 
@@ -22,7 +22,7 @@ Return all results in correct order with percentages in key value array format
 
 `election.results`
 
-Return particular constituency
+Return particular constituency in key value array
 
 `election.results["Cardiff West"]`
 
@@ -32,8 +32,6 @@ Return particular constituency
 Mocha
 
 `npm run test`
-
-## Currently working towards the following instructions:
 
 ### Results format
 

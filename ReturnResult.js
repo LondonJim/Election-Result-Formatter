@@ -25,6 +25,7 @@ class ReturnResult {
           console.log('Error:', err)
         })
         .on('end', () => {
+          this.displayResults()
           console.log('Complete.')
         })
     );
@@ -50,6 +51,17 @@ class ReturnResult {
 
   partyFormat(partySymbol) {
     return this.parties[partySymbol]
+  }
+
+  displayResults() {
+    for (const [key, value] of Object.entries(this.results)) {
+      const partyAndPercent = value
+      console.log(key)
+      for (const [key, value] of Object.entries(partyAndPercent)) {
+        console.log(key, value)
+      }
+      console.log('')
+    }
   }
 }
 
