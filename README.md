@@ -18,6 +18,32 @@ Enter the following to read the results text file and display all results (curre
 
 `election.readResults()`
 
+Example return:
+
+```
+Cardiff West
+Conservative Party 30.8
+Labour Party 49.7
+UKIP 13.7
+Liberal Democrats 5.8
+
+Islington South & Finsbury
+Labour Party 51.5
+Conservative Party 21.4
+Liberal Democrats 11
+UKIP 7.7
+Green Party 7.7
+Independent 0.7
+
+Norbury
+Labour Party 55.9
+Conservative Party 37.5
+Green Party 1.7
+Liberal Democrats 4.9
+
+Complete.
+```
+
 Return all results in correct order with percentages in key value array format
 
 `election.results`
