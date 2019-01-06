@@ -92,6 +92,6 @@ We want to transform this into a standard result that shows:
 * Ind - Independent
 * SNP - SNP
 
-### Validation
+### Validation (still to implement)
 
 If there is a problem with the format of the results file then all good entries should result in output and the error should go to a separate error log with the problem explained in non-technical language that a journalist might be able to understand and report back to the results service.
