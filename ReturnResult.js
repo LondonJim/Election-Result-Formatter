@@ -56,9 +56,9 @@ class ReturnResult {
   displayResults() {
     for (const [key, value] of Object.entries(this.results)) {
       const partyAndPercent = value
-      console.log(key)
+      console.log(key,'\n' + '-'.repeat(key.length))
       for (const [key, value] of Object.entries(partyAndPercent)) {
-        console.log(key, value)
+        console.log(key, value + "%")
       }
       console.log('')
     }
