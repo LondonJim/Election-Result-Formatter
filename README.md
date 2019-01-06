@@ -14,9 +14,18 @@ Enter the following to read the results text file:
 
 `.load returnresult.js`
 
-`results = new ReturnResult()`
+`election = new ReturnResult()`
 
-`results.readResults`
+`election.readResults()`
+
+Return all results in correct order with percentages in key value array format
+
+`election.results`
+
+Return particular constituency
+
+`election.results["Cardiff West"]`
+
 
 ## Testing
 

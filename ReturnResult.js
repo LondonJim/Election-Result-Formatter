@@ -25,7 +25,6 @@ class ReturnResult {
           console.log('Error:', err)
         })
         .on('end', () => {
-          this.results = JSON.stringify(this.results)
           console.log('Complete.')
         })
     );
@@ -33,10 +32,18 @@ class ReturnResult {
 
   formatLine(line) {
     let lineResult = line.split(", ")
+    let totalVotes = 0
+
+    // convert party votes to integers and create a total number of votes
+    for (let i = 1; i < lineResult.length; i = i + 2) {
+      lineResult[i] = parseInt(lineResult[i], 10)
+      totalVotes += lineResult[i]
+    }
+
     let partyResults = {}
     lineResult.forEach((el, index) => {
       if (lineResult[0] === '') { return } // Empty line in text file not added
-      index % 2 === 1 ? partyResults[this.partyFormat(lineResult[index + 1])] = parseInt(el, 10) : null
+      index % 2 === 1 ? partyResults[this.partyFormat(lineResult[index + 1])] = Math.round((el * 100 / totalVotes) * 10) / 10 : null
       this.results[lineResult[0]] = partyResults
     })
   }
