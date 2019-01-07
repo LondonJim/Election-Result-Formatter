@@ -31,7 +31,8 @@ describe('ReturnResult', () => {
     })
 
     it('should add to errors if are entered incorrectly', () => {
-      assert.deepEqual(returnResult.errors, ["Norbury", "Vote count not entered correctly"])
+      assert.deepEqual(returnResult.errors, [["Norbury", "Vote count not entered correctly"],
+                                             ["Croydon Central", "Vote count not entered correctly"]])
     })
   })
 })

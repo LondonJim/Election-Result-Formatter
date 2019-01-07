@@ -27,7 +27,7 @@ class ReturnResult {
         })
         .on('end', () => {
           this.displayResults()
-          console.log('Complete.')
+          console.log(`Complete with ${this.errors.length} error(s)`)
         })
     )
   }
@@ -44,7 +44,7 @@ class ReturnResult {
     }
 
     if (isNaN(totalVotes)) {
-      this.errors.push(lineResult[0], "Vote count not entered correctly")
+      this.errors.push([lineResult[0], "Vote count not entered correctly"])
       return
     }
 

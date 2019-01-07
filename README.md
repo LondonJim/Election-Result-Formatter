@@ -18,7 +18,7 @@ Enter the following to read the results text file and display all results (curre
 
 `election.readResults()`
 
-Example return:
+Example return (note there are two errors detected that need to be checked in the error log):
 
 ```
 Cardiff West
@@ -44,7 +44,7 @@ Conservative Party 37.5%
 Green Party 1.7%
 Liberal Democrats 4.9%
 
-Complete.
+Complete with 2 error(s)
 ```
 
 Return all results in correct order with percentages in key value array format
@@ -58,6 +58,12 @@ Return particular constituency in key value array
 Error log can be accessed in array format
 
 `election.errors`
+
+Example:
+
+```
+["Norbury", "Vote count not entered correctly"]
+```
 
 
 ## Testing
