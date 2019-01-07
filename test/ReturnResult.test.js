@@ -17,7 +17,7 @@ describe('ReturnResult', () => {
       returnResult.readResults()
     })
 
-    it('should return line by line results of text file in JSON format', () => {
+    it('should return line by line results of text file in key, value array', () => {
       assert.deepEqual(returnResult.results, {'Cardiff West': {'Conservative Party': 30.8,
                                                                'Labour Party': 49.7,
                                                                'UKIP': 13.7,
@@ -28,6 +28,10 @@ describe('ReturnResult', () => {
                                                                              'UKIP': 7.7,
                                                                              'Green Party': 7.7,
                                                                              'Independent': 0.7}})
+    })
+
+    it('should add to errors if are entered incorrectly', () => {
+      assert.deepEqual(returnResult.errors, ["Norbury", "Vote count not entered correctly"])
     })
   })
 })

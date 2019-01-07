@@ -4,6 +4,7 @@ class ReturnResult {
     this.fs = fs
     this.es = es
     this.results = {}
+    this.errors = []
     this.parties = { 'C': "Conservative Party",
                      "L": "Labour Party",
                      "LD": "Liberal Democrats",
@@ -28,12 +29,13 @@ class ReturnResult {
           this.displayResults()
           console.log('Complete.')
         })
-    );
+    )
   }
 
   formatLine(line) {
     let lineResult = line.split(", ")
     let totalVotes = 0
+    let partyResults = {}
 
     // convert party votes to integers and create a total number of votes
     for (let i = 1; i < lineResult.length; i = i + 2) {
@@ -41,7 +43,11 @@ class ReturnResult {
       totalVotes += lineResult[i]
     }
 
-    let partyResults = {}
+    if (isNaN(totalVotes)) {
+      this.errors.push(lineResult[0], "Vote count not entered correctly")
+      return
+    }
+
     lineResult.forEach((el, index) => {
       if (lineResult[0] === '') { return } // Empty line in text file not added
       index % 2 === 1 ? partyResults[this.partyFormat(lineResult[index + 1])] = Math.round((el * 100 / totalVotes) * 10) / 10 : null
@@ -63,6 +69,7 @@ class ReturnResult {
       console.log('')
     }
   }
+
 }
 
 module.exports = ReturnResult
